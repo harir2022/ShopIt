@@ -9,7 +9,8 @@ import { createOrder, clearErrors as clearError } from '../../../actions/orderAc
 
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 
-import axios from 'axios'
+import axios from '../../../apiFile'
+
 
 const options = {
     style: {

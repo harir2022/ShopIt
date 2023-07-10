@@ -12,13 +12,24 @@ exports.registerUser = catchASyncErrors(async (req, res, next) => {
                     // console.log("register user initiated");
                     //avatar is misspelled as avators in db
                     // only validated data is accepted;...
-                    console.log(req.body)
+                    // console.log(req.body)
+                    let secure_url,public_id;
+                    if(req.body.avatar){
                 const cloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
                     folder: 'avatars',
                     width: 150,
                     crop: "scale"
                 })
+                public_id = cloud.public_id
+                secure_url=cloud.secure_url;
+            }else{
+                    public_id="temp_nskp3q";
+                    secure_url="https://res.cloudinary.com/dyisiq5pk/image/upload/v1688903286/temp_nskp3q.jpg";
+                }
+
                 // console.log(req.body.avatar)
+                // console.log(secure_url)                  
+                // console.log(req.body)
                 const { name, email, password } = req.body;
                 const user = await Users.create({
                     name,
@@ -26,12 +37,12 @@ exports.registerUser = catchASyncErrors(async (req, res, next) => {
                     password,
                     avator:{
                         // this will be caried out in frontend;
-                        public_id:cloud.public_id,
-                        url: cloud.secure_url,
+                        public_id:public_id,
+                        url: secure_url,
                     }
                 })               
+                console.log(user)
                
-
                 sendToken(user, 200, res);
 })
 
@@ -58,6 +69,7 @@ exports.loginUser = catchASyncErrors(async (req,res,next)=>{
     if(!isPasswordMatched){
         return next(new ErrorHandler('Invalid Passwored',401));
     }
+    // console.log(user)
 
     sendToken(user,200,res);
     

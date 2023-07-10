@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../apiFile'
 
 import {
     CREATE_ORDER_REQUEST,
@@ -22,8 +22,10 @@ import {
     CLEAR_ERRORS
 } from '../constants/orderConstants'
 
+
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
+        // console.log(order)
         dispatch({ type: CREATE_ORDER_REQUEST })
 
         const config = {
@@ -55,6 +57,7 @@ export const myOrders = () => async (dispatch) => {
         dispatch({ type: MY_ORDERS_REQUEST });
 
         const { data } = await axios.get('/api/v1/orders/me')
+        console.log(data)
 
         dispatch({
             type: MY_ORDERS_SUCCESS,

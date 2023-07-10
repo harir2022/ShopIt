@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios from '../apiFile';
 
 import { ADD_TO_CART, REMOVE_ITEM_CART, SAVE_SHIPPING_INFO } from '../constants/cartConstants';
+
 
 
 // straight ah product details to cart component ku anupuchierukalam 

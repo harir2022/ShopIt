@@ -13,6 +13,9 @@ exports.newOrder = catchAsynErrors(async(req,res,next)=>{
           shippingPrice,
           totalPrice,
      } = req.body;
+     // console.log(req.user)
+     // console.log(req.user._id)
+     ORDER.insert
      const order = await ORDER.create({
           shippingInfo,
           orderItems,
@@ -23,7 +26,11 @@ exports.newOrder = catchAsynErrors(async(req,res,next)=>{
           totalPrice,
           paidAt:Date.now(),
           user:req.user._id
+     },(err,s)=>{
+               // console.log("AD   "+err)
+               throw err;
      })
+     
      res.status(200).json({
           success:true,
           order
@@ -84,6 +91,9 @@ async function updateStock(productId,quantity){
 
 exports.updateOrderStatus =catchAsynErrors(async (req,res,next)=>{
      const order = await ORDER.findById(req.params.id);
+     console.log("1")
+     console.log(req.body)
+     console.log(req.params)
      if(!order) 
           return next(new ErrorHandler('no such order exist',404));
      if(order.orderStatus ==="Delivered"){

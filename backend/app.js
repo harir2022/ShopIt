@@ -1,31 +1,31 @@
 const express=require('express');
-const cors = require('cors')
+
 const bodyparser=require('body-parser')
 const cookieParser = require('cookie-parser');
 const expressFileUpload = require('express-fileupload');
-
+const  cors = require('cors')
 const app=express();
 
 // updated after stirpe component ;
 const dotenv=require('dotenv');
 dotenv.config({path:'backend/config/config.env'});
 
+
+const corsOptions ={
+    origin:'http://localhost:3001', 
+    credentials:true,
+}
+app.use(cors(corsOptions));
+
+
 app.use(express.json({
      limit: '50mb'
    }));
    
 app.use(express.json());
-app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressFileUpload());
-
-app.use(
-  cors({
-    origin: 'https://shopit-now.netlify.app', // Replace with the allowed origin(s) for your frontend app
-    methods: '*', // Allow all HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
-  })
-);
 
 
 

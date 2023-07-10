@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../apiFile'
 import { 
       ALL_PRODUCTS_REQUEST,
      ALL_PRODUCTS_SUCCESS,
@@ -31,6 +31,7 @@ import {
     CLEAR_ERROR
 
 } from '../constants/productsConstants'
+import apiConfig from '../apiFile';
 
 
 //render home page;
@@ -39,7 +40,7 @@ export const getProducts =( keyword='',currentPage  =1 ,price,category,rating=0 
           dispatch({
                type:ALL_PRODUCTS_REQUEST,
           });
-        //   console.log(keyword + "dddd")
+          
           let  link=`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`;
           if(category)
           {
@@ -49,7 +50,7 @@ export const getProducts =( keyword='',currentPage  =1 ,price,category,rating=0 
                                 
            
           const {data} =await axios.get(link);
-          console.log(data)
+        //   console.log(data)
           
           
 

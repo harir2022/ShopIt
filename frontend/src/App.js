@@ -24,7 +24,7 @@ import NewPassword from './Components/User/NewPassword';
 import Cart from './Components/Cart/Cart';
 import Shipping from './Components/Cart/Steps/Shipping';
 import ConfirmOrder from './Components/Cart/Steps/ConfirmOrder';
-import axios from 'axios';
+import axios from './apiFile';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Payment from './Components/Cart/Steps/Payment';
@@ -35,6 +35,7 @@ import Dashboard from './Components/Admin/Dashboard';
 import ProductsList from './Components/Admin/ProductsList';
 import NewProduct from './Components/Admin/NewProduct';
 import UpdateProduct from './Components/Admin/UpdateProduct';
+import apiConfig from './apiFile';
 
 
 function App() {
