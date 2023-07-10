@@ -12,7 +12,7 @@ dotenv.config({path:'backend/config/config.env'});
 
 
 const corsOptions ={
-    origin:'http://localhost:3001', 
+    origin:'https://shopit-now.netlify.app', 
     credentials:true,
 }
 app.use(cors(corsOptions));
